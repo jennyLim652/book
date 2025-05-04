@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Ride | JeepneyBooking</title>
+  <style>
+    :root {
+      --main-bg: #ede0d4;
+      --primary: #7f5539;
+      --accent: #a47148;
+      --light: #f5ebe0;
+      --dark: #5e3023;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      background-color: var(--main-bg);
+      color: var(--dark);
+      padding-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header, footer, main, form, nav, .payment-modal {
+      width: 100%;
+    }
+    header {
+      background-color: var(--primary);
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .logo-container img {
+      height: 75px;
+      width: auto;
+      margin-right: 0.75rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    nav a.active {
+      background-color: var(--light);
+      color: var(--primary);
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .auth-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .auth-buttons a {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .auth-buttons a:hover {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      background-color: white;
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .price-display {
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: var(--primary);
+    }
+    .payment-modal, .modal-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    .payment-modal {
+      display: none;
+      background-color: var(--light);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 400px;
+    }
+    .modal-overlay {
+      display: none;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0,0,0,0.3);
+      z-index: 998;
+    }
+    footer {
+      background-color: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      position: fixed;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="FIN.png" alt="JeepneyBooking logo" />
+      <div><strong>Modern Jeepney Tracker </strong></div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="book.html" class="active">Book a Ride</a>
+      <a href="sched.html">Schedule</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Book a Ride</h1>
+    <form id="booking-form">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="user_name" placeholder="e.g. Juan Dela Cruz" required>
+
+      <label for="route">Select Route:</label>
+      <select id="route" name="route" required>
+        <option value="">-- Choose a route --</option>
+        <option value="40">Session Road → SLU (₱40)</option>
+        <option value="35">SM Baguio → UP Baguio (₱35)</option>
+        <option value="30">Market → Marcos Highway (₱30)</option>
+        <option value="45">John Hay → Center Mall (₱45)</option>
+      </select>
+
+      <div class="price-display">Base Price: ₱<span id="price">0</span></div>
+
+      <label for="discount">Discount Type:</label>
+      <select id="discount" name="discount">
+        <option value="0">None</option>
+        <option value="0.2">Student - 20% Off</option>
+        <option value="0.2">PWD - 20% Off</option>
+        <option value="0.2">Senior - 20% Off</option>
+      </select>
+
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Select Time:</label>
+      <input type="time" id="time" name="time" required>
+
+      <label for="seats">Number of Seats:</label>
+      <input type="number" id="seats" name="seats" min="1" max="10" required>
+
+      <label for="email">Your Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <div class="price-display">Total Fare: ₱<span id="total">0</span></div>
+
+      <input type="hidden" name="total_price" id="hidden-total">
+      <input type="hidden" name="payment_mode" id="payment-mode">
+
+      <button type="button" id="choose-payment">Select Mode of Payment</button>
+      <button type="submit" id="confirm-booking" style="display: none;">Confirm Booking</button>
+    </form>
+  </main>
+
+  <div class="modal-overlay" id="overlay"></div>
+  <div class="payment-modal" id="payment-modal">
+    <h2>Select Payment Method</h2>
+    <select id="payment-method">
+      <option value="GCash">GCash</option>
+      <option value="Maya">Maya</option>
+      <option value="Cash">Cash on Arrival</option>
+    </select>
+    <button id="payment-confirm">Confirm Payment Mode</button>
+  </div>
+
+  <footer>
+    &copy; 2025 JeepneyBooking. Made in Baguio City 🇵🇭
+  </footer>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("NK4PXVGxexjr5Hza2");
+
+    const form = document.getElementById('booking-form');
+    const route = document.getElementById('route');
+    const discount = document.getElementById('discount');
+    const seats = document.getElementById('seats');
+    const priceDisplay = document.getElementById('price');
+    const totalDisplay = document.getElementById('total');
+    const hiddenTotal = document.getElementById('hidden-total');
+    const paymentMode = document.getElementById('payment-mode');
+    const confirmBtn = document.getElementById('confirm-booking');
+    const choosePaymentBtn = document.getElementById('choose-payment');
+    const paymentMethod = document.getElementById('payment-method');
+    const paymentModal = document.getElementById('payment-modal');
+    const overlay = document.getElementById('overlay');
+
+    function updatePrice() {
+      const base = parseFloat(route.value || 0);
+      const discountRate = parseFloat(discount.value || 0);
+      const quantity = parseInt(seats.value || 1);
+      const discounted = base * (1 - discountRate);
+      const total = Math.round(discounted * quantity);
+
+      priceDisplay.textContent = base.toFixed(2);
+      totalDisplay.textContent = total.toFixed(2);
+      hiddenTotal.value = total;
+    }
+
+    [route, discount, seats].forEach(el => el.addEventListener('change', updatePrice));
+
+    choosePaymentBtn.addEventListener('click', () => {
+      paymentModal.style.display = 'block';
+      overlay.style.display = 'block';
+    });
+
+    document.getElementById('payment-confirm').addEventListener('click', () => {
+      const selected = paymentMethod.value;
+      paymentMode.value = selected;
+
+      paymentModal.style.display = 'none';
+      overlay.style.display = 'none';
+      confirmBtn.style.display = 'inline-block';
+      choosePaymentBtn.style.display = 'none';
+
+      confirmBtn.textContent = `Confirm Booking (${selected})`;
+      confirmBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+      confirmBtn.style.boxShadow = "0 0 10px 2px var(--accent)";
+      setTimeout(() => confirmBtn.style.boxShadow = "none", 1500);
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_3invcji', 'template_mtevd7j', this)
+        .then(() => alert('Booking confirmed! Check your email.'))
+        .catch(err => alert('Failed to send email: ' + err));
+    });
+  </script>
+</body>
+</html>

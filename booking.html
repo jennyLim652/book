@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Jeepney Booking</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .left-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 40%;
+    }
+
+    .left-header .logo-container {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 85px;
+      width: 85px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      color: grey;
+    }
+    .center-nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover,
+    nav a.active {
+      text-decoration: underline;
+    }
+
+    .right-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+
+    .header-btn {
+      padding: 0.3rem 0.7rem;
+      background-color: #17a2b8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .header-btn:hover {
+      background-color: #138496;
+    }
+
+    #account {
+      font-size: 0.85rem;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input,
+    form select {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      padding: 0.75rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #218838;
+    }
+
+    #bookingList {
+      margin-top: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    #bookingList li {
+      background: #ffffff;
+      padding: 0.75rem 1rem;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid #007bff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    }
+
+    #bookingList button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #bookingList button:hover {
+      background-color: #c82333;
+    }
+
+    main > div button {
+      margin-right: 10px;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #confirmBookings {
+      background-color: #007bff;
+      color: white;
+    }
+
+    #confirmBookings:hover {
+      background-color: #0056b3;
+    }
+
+    #clearCart {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    #clearCart:hover {
+      background-color: #5a6268;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+
+      .center-nav {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .right-header {
+        align-items: flex-start;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="left-header">
+    <div class="logo-container">
+        <a href="index.html" class="logo">
+            <img src="d:\HUMCOM\try\MJT_logo-removebg-preview.png" alt="Logo"> </a>
+    <h1>Modern Jeepney Tracker</h1>
+  </div>
+
+  <nav class="center-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="route.html">Routes</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="right-header">
+    <div id="account">User Account</div>
+    <a href="settings2.html" class="header-btn">Settings</a>
+    <a href="logout.html" class="header-btn">Logout</a>
+  </div>
+</header>
+
+<main>
+  <h2>Book Your Jeepney Ride</h2>
+
+  <form id="bookingForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required />
+
+    <label for="contact">Contact:</label>
+    <input type="text" id="contact" required />
+
+    <label for="jeepney">Select Jeepney Route:</label>
+    <select id="jeepney" required>
+      <option value="">--Select a Jeepney Route--</option>
+      <option value="San Luis - Fairview -town">San Luis - Fairview -town</option>
+      <option value="Aurora hill- magsaysay">Aurora hill- magsaysay</option>
+      <option value="Quezon hill - hilltop">Quezon hill - hilltop</option>
+      <option value="Route 1 - ABC to XYZ">Route 1 - ABC to XYZ</option>
+      <option value="Route 2 - DEF to UVW">Route 2 - DEF to UVW</option>
+      <option value="Route 3 - GHI to RST">Route 3 - GHI to RST</option>
+    </select>
+
+    <button type="submit">Add to Booking Cart</button>
+  </form>
+
+  <h3>Your Booking Cart</h3>
+  <ul id="bookingList"></ul>
+
+  <div style="margin-top: 20px;">
+    <button id="confirmBookings">Confirm All Bookings</button>
+    <button id="clearCart">Clear Cart</button>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Modern Jeepney Tracker. All Rights Reserved.
+</footer>
+
+<script>
+  const bookingForm = document.getElementById("bookingForm");
+  const bookingList = document.getElementById("bookingList");
+  let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+  function renderBookings() {
+    bookingList.innerHTML = "";
+    bookings.forEach((booking, index) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <div style="flex-grow:1; text-align:left;">
+          ${booking.name} | ${booking.contact} | ${booking.route}
+        </div>
+        <button onclick="removeBooking(${index})">Remove</button>
+      `;
+      bookingList.appendChild(listItem);
+    });
+  }
+
+  function saveAndRender() {
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+    renderBookings();
+  }
+
+  bookingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const contact = document.getElementById("contact").value;
+    const route = document.getElementById("jeepney").value;
+
+    if (!name || !contact || !route) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    bookings.push({ name, contact, route });
+    saveAndRender();
+    bookingForm.reset();
+  });
+
+  function removeBooking(index) {
+    bookings.splice(index, 1);
+    saveAndRender();
+  }
+
+  document.getElementById("confirmBookings").addEventListener("click", function () {
+    if (bookings.length === 0) {
+      alert("Your booking cart is empty.");
+      return;
+    }
+    alert("Bookings confirmed! Thank you.");
+    localStorage.removeItem("bookings");
+    bookings = [];
+    renderBookings();
+    window.location.href = "route2.html";
+  });
+
+  document.getElementById("clearCart").addEventListener("click", function () {
+    if (confirm("Are you sure you want to clear your booking cart?")) {
+      bookings = [];
+      saveAndRender();
+    }
+  });
+
+  renderBookings();
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

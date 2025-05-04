@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jeepney Schedule | Modern Jeepney Baguio</title>
+  <style>
+    :root {
+      --main-bg: #ede0d4;
+      --primary: #7f5539;
+      --accent: #a47148;
+      --light: #f5ebe0;
+      --dark: #5e3023;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f0e8;
+      color: #4b3f2f;
+    }
+
+    
+    header {
+  background-color: var(--primary);
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 75px;
+      width: auto;
+      margin-right: 0.75rem;
+    }
+
+    nav {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 1.5rem;
+    }
+
+    nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  background-color: var(--light);
+  color: var(--primary);
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.auth-buttons a {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.auth-buttons a:hover {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: #d4b89d;
+      color: #2f2215;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f5f0;
+    }
+
+    /* Tracking mockup styling */
+    .tracking-scene {
+  margin-top: 2rem;
+  position: relative;
+  height: 160px;
+  background-color: #d7c4aa;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Buildings and trees */
+.buildings {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 60px;
+  padding: 0 1rem;
+}
+
+.building {
+  width: 40px;
+  height: 60px;
+  background-color: #6e4b3a;
+  border-radius: 2px;
+}
+
+.building.tall {
+  height: 80px;
+  background-color: #8a5e43;
+}
+
+.tree {
+  width: 20px;
+  height: 40px;
+  background-color: #3e573e;
+  border-radius: 50% 50% 0 0;
+}
+
+.tree.small {
+  height: 30px;
+}
+
+/* Road */
+.road {
+  position: relative;
+  height: 100px;
+  background-color: #4b3f2f;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top: 4px dashed #ccc;
+}
+
+/* Jeepneys */
+.jeepney {
+  position: absolute;
+  left: -80px;
+  font-size: 30px;
+  animation: drive 10s linear infinite;
+}
+
+.jeepney.delay2 {
+  animation-delay: 2s;
+}
+.jeepney.delay4 {
+  animation-delay: 4s;
+}
+
+@keyframes drive {
+  0% { left: -80px; }
+  100% { left: 100%; }
+}
+
+
+    @keyframes moveJeep {
+      0% {
+        left: -80px;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #5c4433;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+          <img src="c:\Users\raven\Downloads\lugu-removebg-preview.png" alt="JeepneyBooking logo" />
+          <div><strong>JeepneyBooking</strong></div>
+        </div>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="book.html" >Book a Ride</a>
+            <a href="sched.html"class="active">Schedule</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        
+          <div class="auth-buttons">
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+          </div>
+  </header>
+
+  <main>
+    <h1>Jeepney Route Schedule</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Route</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Session Road → SLU</td>
+          <td>7:00 AM</td>
+          <td>7:20 AM</td>
+          <td>Available</td>
+        </tr>
+        <tr>
+          <td>Market → Marcos Highway</td>
+          <td>8:15 AM</td>
+          <td>8:45 AM</td>
+          <td>Available</td>
+        </tr>
+        <tr>
+          <td>SM Baguio → UP Baguio</td>
+          <td>9:00 AM</td>
+          <td>9:25 AM</td>
+          <td>Fully Booked</td>
+        </tr>
+        <tr>
+          <td>John Hay → Center Mall</td>
+          <td>10:30 AM</td>
+          <td>11:00 AM</td>
+          <td>Available</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 👇 Jeepney tracking animation -->
+    <div class="tracking-scene">
+        <div class="buildings">
+          <div class="building"></div>
+          <div class="tree"></div>
+          <div class="building tall"></div>
+          <div class="tree small"></div>
+          <div class="building"></div>
+        </div>
+        <div class="road">
+          <div class="jeepney">🚌</div>
+          <div class="jeepney delay2">🚌</div>
+          <div class="jeepney delay4">🚌</div>
+        </div>
+      </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Modern Jeepney Baguio. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | Modern Jeepney Baguio</title>
+  <style>
+    :root {
+      --main-bg: #ede0d4;
+      --primary: #7f5539;
+      --accent: #a47148;
+      --light: #f5ebe0;
+      --dark: #5e3023;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url("images/bg.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background-color: var(--primary);
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 75px;
+      width: auto;
+      margin-right: 0.75rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .auth-buttons a {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .auth-buttons a:hover {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(75, 63, 47, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .auth-container {
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 400px;
+      max-width: 90%;
+      text-align: center;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 2rem;
+      color: #5c4433;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.85rem;
+      background-color: #5c4433;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7a5a45;
+    }
+
+    p {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    a {
+      color: #5c4433;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <header>
+    <div class="logo-container">
+      <img src="c:\Users\raven\Downloads\lugu-removebg-preview.png" alt="JeepneyBooking logo" />
+      <div><strong>JeepneyBooking</strong></div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="book.html">Book a Ride</a>
+      <a href="sched.html">Schedule</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <h2>Sign Up</h2>
+    <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Create Account</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log In</a></p>
+  </div>
+</body>
+</html>
